@@ -31,6 +31,7 @@ class Game:
             self.get_round_winner()
             self.determine_winner()
 
+
     def main_menu(self):
         num_players = int(input("Please select a number of players: (1 or 2): "))
         number_of_rounds = int(input("Please select the best out of '' : for game length: "))
@@ -51,13 +52,14 @@ class Game:
 
     def choose_gesture_player_1(self):
         print("Player 2 look away")
+        print()
+        time.sleep(2)
         player_1_choice = ""
         valid = False
         while valid == False:
             player_1_choice = int(input("Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
             if player_1_choice != 0 and player_1_choice != 1 and player_1_choice != 2 and player_1_choice != 3 and player_1_choice != 4:
                 print("Invalid input please try again!")
-                time.sleep(2)
             else:
                 valid = True
         for i in range(20):
@@ -73,6 +75,8 @@ class Game:
             return selected_gesture
         else:
             print("Player 1 look away")
+            print()
+            time.sleep(2)
             player_2_choice = ""
             valid = False
             while valid == False:
@@ -80,7 +84,7 @@ class Game:
                     "Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
                 if player_2_choice != 0 and player_2_choice != 1 and player_2_choice != 2 and player_2_choice != 3 and player_2_choice != 4:
                     print("Invalid input please try again!")
-                    time.sleep(2)
+
                 else:
                     valid = True
             for i in range(20):
@@ -111,11 +115,12 @@ class Game:
                 result = 'player_1'
                 print(f'{self.player_1.name} picked {player_1_hand.name} ')
                 print()
-                time.sleep(2)
+                time.sleep(1.5)
                 print(f'{self.player_2.name} picked {player_2_hand.name}')
                 print()
-                time.sleep(2)
+                time.sleep(1.5)
                 print(f'{result} won the round')
+                time.sleep(1.5)
                 print()
                 self.current_round += 1
                 return result
@@ -124,14 +129,15 @@ class Game:
             result = "tie"
             print(f'{self.player_1.name} picked {player_1_hand.name} ')
             print()
-            time.sleep(2)
+            time.sleep(1.5)
 
             print(f'{self.player_2.name} picked {player_2_hand.name}')
             print()
-            time.sleep(2)
+            time.sleep(1.5)
 
             print('Round is tied')
             print()
+            time.sleep(1.5)
             self.current_round += 1
             return result
 
@@ -148,21 +154,32 @@ class Game:
             time.sleep(2)
 
     def determine_winner(self):
-        if self.player_1.rounds_won == (self.rounds / 2) + 1:
+        if self.player_1.rounds_won == (self.rounds // 2) + 1:
             print(f"{self.player_1.name} has WON the game!!!")
+            self.play_again()
 
-        if self.player_2.rounds_won == (self.rounds / 2) + 1:
+        if self.player_2.rounds_won == (self.rounds // 2) + 1:
             print(f"{self.player_2.name} has WON the game!!!")
+            self.play_again()
 
         if self.current_round == self.rounds:
-            self.run = False
             if self.player_1.rounds_won > self.player_2.rounds_won:
                 print(f"{self.player_1.name} has WON the game!!!")
+                self.play_again()
             elif self.player_2.rounds_won > self.player_1.rounds_won:
                 print(f'{self.player_2.name} has WON the game!!!')
+                self.play_again()
             else:
                 print("Game was a Tie. ")
+                self.play_again()
 
 
-
+    def play_again(self):
+        selection = input("Do you want to play again? (y/n): ")
+        valid_selection = selection.lower()
+        if valid_selection == "y":
+            self.player_1.rounds_won = 0
+            self.player_2.rounds_won = 0
+        else:
+            self.run = False
 
