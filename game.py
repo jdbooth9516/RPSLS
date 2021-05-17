@@ -170,7 +170,7 @@ class Game:
                 print(f'{self.player_2.name} has WON the game!!!')
                 self.play_again()
             else:
-                print("Game was a Tie. ")
+                print("All right, we'll call it a draw")
                 self.play_again()
 
 
