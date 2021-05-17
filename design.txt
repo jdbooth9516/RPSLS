@@ -1,0 +1,13 @@
+figure out inheritance more than likely have a player class then the child be human or ai
+
+need array of gestures
+
+function to compare chosen gestures and find the winner of the round
+
+will need a counter for rounds won
+
+need a function to determine the game winner
+
+
+
+latter add a way to hide the input
