@@ -7,6 +7,7 @@ import random
 class Game:
     def __init__(self):
         self.rounds = 0
+        self.current_round = 0
         self.players = 0
         self.player_1 = None
         self.player_2 = None
@@ -18,7 +19,7 @@ class Game:
         self.spock = Spock()
         self.gestures = [self.rock, self.paper, self.scissor, self.lizard, self.spock]
         self.round_winner = ""
-        self.delay = time.sleep(2)
+
 
 
 
@@ -50,10 +51,18 @@ class Game:
 
     def choose_gesture_player_1(self):
         print("Player 2 look away")
-        player_1_choice = int(input("Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
+        player_1_choice = ""
+        valid = False
+        while valid == False:
+            player_1_choice = int(input("Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
+            if player_1_choice != 0 and player_1_choice != 1 and player_1_choice != 2 and player_1_choice != 3 and player_1_choice != 4:
+                print("Invalid input please try again!")
+                time.sleep(2)
+            else:
+                valid = True
         for i in range(20):
             print()
-        self.delay
+        time.sleep(2)
         selected_gesture = self.gestures[player_1_choice]
         return selected_gesture
 
@@ -64,10 +73,19 @@ class Game:
             return selected_gesture
         else:
             print("Player 1 look away")
-            player_2_choice = int(input("Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
+            player_2_choice = ""
+            valid = False
+            while valid == False:
+                player_2_choice = int(input(
+                    "Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
+                if player_2_choice != 0 and player_2_choice != 1 and player_2_choice != 2 and player_2_choice != 3 and player_2_choice != 4:
+                    print("Invalid input please try again!")
+                    time.sleep(2)
+                else:
+                    valid = True
             for i in range(20):
                 print()
-            self.delay
+            time.sleep(2)
             selected_gesture = self.gestures[player_2_choice]
             return selected_gesture
 
@@ -79,11 +97,13 @@ class Game:
                 result = 'player_2'
                 print(f'{self.player_1.name} picked {player_1_hand.name} ')
                 print()
-                self.delay * 2
+                time.sleep(2)
                 print(f'{self.player_2.name} picked {player_2_hand.name}')
                 print()
-                self.delay
+                time.sleep(2)
                 print(f'{result} won the round')
+                print()
+                self.current_round += 1
                 return result
 
         for lose in player_2_hand.loses_to:
@@ -91,24 +111,28 @@ class Game:
                 result = 'player_1'
                 print(f'{self.player_1.name} picked {player_1_hand.name} ')
                 print()
-                self.delay
+                time.sleep(2)
                 print(f'{self.player_2.name} picked {player_2_hand.name}')
                 print()
-                self.delay
+                time.sleep(2)
                 print(f'{result} won the round')
+                print()
+                self.current_round += 1
                 return result
 
         if player_1_hand.name == player_2_hand.name:
             result = "tie"
             print(f'{self.player_1.name} picked {player_1_hand.name} ')
             print()
-            self.delay
-            time.sleep(1)
+            time.sleep(2)
+
             print(f'{self.player_2.name} picked {player_2_hand.name}')
             print()
-            self.delay
-            time.sleep(1)
+            time.sleep(2)
+
             print('Round is tied')
+            print()
+            self.current_round += 1
             return result
 
     def get_round_winner(self):
@@ -116,24 +140,28 @@ class Game:
             self.player_1.rounds_won += 1
             print(f'Player One : {self.player_1.rounds_won} to Player Two : {self.player_2.rounds_won}')
             print()
-            self.delay
+            time.sleep(2)
         elif self.round_winner == "player_2":
             self.player_2.rounds_won += 1
             print(f'Player One : {self.player_1.rounds_won} to Player Two : {self.player_2.rounds_won}')
             print()
-            self.delay
+            time.sleep(2)
 
     def determine_winner(self):
-        if self.player_1.rounds_won == self.rounds:
+        if self.player_1.rounds_won == (self.rounds / 2) + 1:
+            print(f"{self.player_1.name} has WON the game!!!")
+
+        if self.player_2.rounds_won == (self.rounds / 2) + 1:
+            print(f"{self.player_2.name} has WON the game!!!")
+
+        if self.current_round == self.rounds:
             self.run = False
-            print(f'{self.player_1.name} has won the game')
-            print()
-            self.delay
-        elif self.player_2.rounds_won == self.rounds:
-            self.run = False
-            print(f'{self.player_2.name} has won the game')
-            print()
-            self.delay
+            if self.player_1.rounds_won > self.player_2.rounds_won:
+                print(f"{self.player_1.name} has WON the game!!!")
+            elif self.player_2.rounds_won > self.player_1.rounds_won:
+                print(f'{self.player_2.name} has WON the game!!!')
+            else:
+                print("Game was a Tie. ")
 
 
 
