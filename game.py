@@ -33,6 +33,11 @@ class Game:
 
 
     def main_menu(self):
+        print("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
+        print()
+        time.sleep (1)
+
+        print("Rules are simply just like Rock, Paper, Scissors. Just with the addition of 2 more options")
         num_players = int(input("Please select a number of players: (1 or 2): "))
         number_of_rounds = int(input("Please select the best out of '' : for game length: "))
         self.rounds = number_of_rounds
