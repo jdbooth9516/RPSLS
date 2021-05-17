@@ -4,10 +4,25 @@ need array of gestures
 
 function to compare chosen gestures and find the winner of the round
 
+
 will need a counter for rounds won
+
 
 need a function to determine the game winner
 
+games structure
+    select number of players
+    select number of best out of rounds
 
+    each player picks a name
+    rounds begin
+    game ends when one player reaches the required amount of wins
+
+round structure
+    each player selects a gesture
+    gestures are compares to see if one defeats the other
+    round won count increases for the player that won
+    round won counts are looked at to see if there is a winner.
+    
 
 latter add a way to hide the input

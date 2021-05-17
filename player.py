@@ -5,7 +5,7 @@ class Player:
 
 class Human(Player):
     def __init__(self):
-        super().__init__(self)
+        super().__init__()
 
     def set_name(self):
         name = input("Choose your name: ")
@@ -16,7 +16,7 @@ class Human(Player):
 
 class Computer(Player):
     def __init__(self):
-        super().__init__(self)
+        super().__init__()
 
         self.name = "AI"
 
