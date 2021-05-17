@@ -7,7 +7,7 @@ class Gesture:
 
 class Rock(Gesture):
     def __init__(self):
-        super().__init__(self)
+        super().__init__()
         self.name = 'rock'
         self.wins_against = ['scissors', "lizard"]
         self.loses_to = ['paper', "spock"]

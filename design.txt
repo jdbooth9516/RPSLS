@@ -23,6 +23,6 @@ round structure
     gestures are compares to see if one defeats the other
     round won count increases for the player that won
     round won counts are looked at to see if there is a winner.
-    
+
 
 latter add a way to hide the input
