@@ -49,9 +49,24 @@ class Game:
         print('when choosing a gesture hit a single number and hit enter the number that you have selected will not '
               'be displayed in terminal.')
         print()
+        valid_1 = False
+        number_of_rounds = 0
+        num_players = 0
+        while valid_1 == False:
+            num_players = int(input("Please select a number of players: (1 or 2): "))
+            if num_players != 1 and num_players != 2:
+                print("Invalid input please try again.")
+            else:
+                valid_1 = True
 
-        num_players = int(input("Please select a number of players: (1 or 2): "))
-        number_of_rounds = int(input("Please select the best out of '' : for game length: "))
+        valid_2 = False
+        while valid_2 == False:
+            number_of_rounds = int(input("Please select the best out of '' : for game length: "))
+            if number_of_rounds % 2 == 0:
+                print("Needs to be an odd number for best out of.")
+            else:
+                valid_2 = True
+
         self.rounds = number_of_rounds
         if num_players == 1:
             self.player_1 = Human()
