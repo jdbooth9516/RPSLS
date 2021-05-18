@@ -1,30 +1,32 @@
+class Gesture:
+    def __init__(self, name):
+        self.name = name
 
-
-class Rock:
+class Rock(Gesture):
     def __init__(self):
-        self.name = 'rock'
+        super().__init__(name='rock')
         self.loses_to = ['paper', "spock"]
 
 
-class Scissor:
+class Scissor(Gesture):
     def __init__(self):
-        self.name = 'scissor'
+        super().__init__(name='scissor')
         self.loses_to = ['rock', "spock"]
 
 
-class Paper:
+class Paper(Gesture):
     def __init__(self):
-        self.name = 'paper'
+        super().__init__(name='paper')
         self.loses_to = ['scissor', "lizard"]
 
 
-class Lizard:
+class Lizard(Gesture):
     def __init__(self):
-        self.name = 'lizard'
+        super().__init__(name='lizard')
         self.loses_to = ['scissor', "rock"]
 
 
-class Spock:
+class Spock(Gesture):
     def __init__(self):
-        self.name = 'spock'
+        super().__init__(name='spock')
         self.loses_to = ['lizard', "paper"]

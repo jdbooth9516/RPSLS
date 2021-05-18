@@ -2,6 +2,7 @@ from gesture import *
 from player import *
 import time
 import random
+import getpass
 
 
 class Game:
@@ -35,9 +36,20 @@ class Game:
     def main_menu(self):
         print("Welcome to Rock, Paper, Scissors, Lizard, Spock!")
         print()
-        time.sleep (1)
+        time.sleep(1)
+        print('You must run this from the terminal by "cd" in to the directory and using the command "python3 main.py"')
+        print()
+        time.sleep(2)
+        print("Rules are simply just like Rock, Paper, Scissors. Just with the addition of 2 more options of lizard and spock.")
+        time.sleep(2)
+        print()
+        print('For the number of players enter 1 to play against the AI, enter 2 to play against another human')
+        time.sleep(2)
+        print()
+        print('when choosing a gesture hit a single number and hit enter the number that you have selected will not '
+              'be displayed in terminal.')
+        print()
 
-        print("Rules are simply just like Rock, Paper, Scissors. Just with the addition of 2 more options")
         num_players = int(input("Please select a number of players: (1 or 2): "))
         number_of_rounds = int(input("Please select the best out of '' : for game length: "))
         self.rounds = number_of_rounds
@@ -62,13 +74,12 @@ class Game:
         player_1_choice = ""
         valid = False
         while valid == False:
-            player_1_choice = int(input("Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
+            # player_1_choice = int(input("Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
+            player_1_choice = int(getpass.getpass("Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
             if player_1_choice != 0 and player_1_choice != 1 and player_1_choice != 2 and player_1_choice != 3 and player_1_choice != 4:
                 print("Invalid input please try again!")
             else:
                 valid = True
-        for i in range(20):
-            print()
         time.sleep(2)
         selected_gesture = self.gestures[player_1_choice]
         return selected_gesture
@@ -85,15 +96,14 @@ class Game:
             player_2_choice = ""
             valid = False
             while valid == False:
-                player_2_choice = int(input(
+                # player_2_choice = int(input(
+                #     "Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
+                player_2_choice = int(getpass.getpass(
                     "Choose a gesture by picking a number (1: rock) (2: paper) (3: scissors) (4: lizard) (5: Spock): ")) - 1
                 if player_2_choice != 0 and player_2_choice != 1 and player_2_choice != 2 and player_2_choice != 3 and player_2_choice != 4:
                     print("Invalid input please try again!")
-
                 else:
                     valid = True
-            for i in range(20):
-                print()
             time.sleep(2)
             selected_gesture = self.gestures[player_2_choice]
             return selected_gesture
